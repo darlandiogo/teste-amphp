@@ -15,9 +15,7 @@ Amp\Loop::run(function() {
 
     $promises = Promise\wait(
         parallelMap($users, function ($user) {   
-            return Amp\Promise\wait(
-                Api::call("https://jsonplaceholder.typicode.com/users/{$user->id}/todos")
-            );
+            return Api::call("https://jsonplaceholder.typicode.com/users/{$user->id}/todos");
         })
     );
 
